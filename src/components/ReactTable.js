@@ -7,7 +7,7 @@ import {
     TableHeaderRow,
     TableEditRow,
     TableEditColumn,
-} from '@devexpress/dx-react-grid-material-ui';
+} from '@devexpress/dx-react-grid-material-ui'; //
 
 import axios from 'axios'
 
