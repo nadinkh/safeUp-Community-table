@@ -1,7 +1,8 @@
 
 import './App.css';
-import ReactTable from './components/ReactTable.js'
+// import ReactTable from './components/ReactTable.js'
 // import Communities from './components/Communities'
+import DataTable from './components/DataTable'
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import Drawer from '@material-ui/core/Drawer'
@@ -66,7 +67,7 @@ function App() {
           <Route exact path='/'>
             Welcoming page
             </Route>
-          <Route exact path='/communities' component={ReactTable} />
+          <Route exact path='/communities' component={DataTable} />
 
         </Switch>
       </div>

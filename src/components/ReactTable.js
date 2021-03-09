@@ -34,22 +34,23 @@ export default () => {
     console.log(columns)
 
     const [rows, setRows] = useState(generateRows({
-        columnValues: { id: ({ index }) => index, ...defaultColumnValues },
-        length: 2, // the lenght start when reload should change according to the data 
+        columnValues: { id: ({ index }) => index, FetchingData },
+        // the lenght start when reload should change according to the data 
     }));
     // const [rows, setRows] = useState([
-
 
     // ]
     // );
 
+    console.log(rows)
+    console.log(defaultColumnValues)
 
     function FetchingData() {
         const [communities, setCommunities] = useState([])
-        const [id, setId] = useState("3072ebf8-06d1-4ab9-85ee-1e017f3cb7c2")
+        // const [id, setId] = useState("3072ebf8-06d1-4ab9-85ee-1e017f3cb7c2")
 
         useEffect(() => {
-            axios.get(`https://safeup-api-communities-0001.herokuapp.com/communities/${id}`)
+            axios.get(`https://safeup-api-communities-0001.herokuapp.com/communities`)
                 .then(res => {
                     console.log(res.data)
                 })
