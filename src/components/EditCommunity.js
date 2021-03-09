@@ -47,21 +47,31 @@ export default class extends Component {
     }
 
 
-    handleSubmit = (id, e) => {
+    handleSubmit = (e) => {
         //todo validation 
         // const {form}=this.state
 
         // this.props.onSubmit(form)
         e.preventDefault()
         console.log(this.state)
-        const data = {
-            name: this.state.form.name,
-            languageCode: this.state.form.languageCode,
-            timeZone: this.state.form.timeZone,
-            type: parseInt(this.state.form.type, 10)
-        }
+        // const data = {
+        //     name: this.state.form.name,
+        //     languageCode: this.state.form.languageCode,
+        //     timeZone: this.state.form.timeZone,
+        //     type: parseInt(this.state.form.type, 10)
+        // }
+        //axios.patch(`https://safeup-api-communities-0001.herokuapp.com/communities` + id, data)
+        
+        ///test example start
 
-        axios.put(`https://safeup-api-communities-0001.herokuapp.com/communities` + id, data)
+        let id = "3072ebf8-06d1-4ab9-85ee-1e017f3cb7c2"
+        const data = {
+            "name": "Test Community PATCH from app",
+            "description": "This is an update for a test community"
+        }
+        ///////end//////
+
+        axios.patch(`https://safeup-api-communities-0001.herokuapp.com/communities/` + id, data)
             .then(response => {
                 console.log(response.data)
                 this.props.EditCommunity(response.data)
@@ -89,9 +99,6 @@ export default class extends Component {
                     Update community
                     </DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-
-                    </DialogContentText>
                     <form  >
                         <TextField
                             multiline
