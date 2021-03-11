@@ -36,7 +36,7 @@ class DataTable extends Component {
 
         if (response.ok) {
             const communities = await response.json()
-            console.log(communities[0])
+            // console.log(communities[0])
             this.setState({ communities, isLoading: false })
         }
         else {
@@ -48,17 +48,13 @@ class DataTable extends Component {
             communities: [...this.state.communities, dataComm]
         })
     }
-    EditCommunity = (dataComm) => {
-        this.setState({
-            communities: [...this.state.communities, dataComm]
-        })
-    }
+
     renderTableHeader = () => {
         return (
 
             // <TableCell style={{ fontWeight: 'bold' }} align="right" key={attr}>
             <>
-                <TableCell style={{ fontWeight: 'bold' }} >ID</TableCell>
+                {/* <TableCell style={{ fontWeight: 'bold' }} >ID</TableCell> */}
                 <TableCell style={{ fontWeight: 'bold' }} >Name</TableCell>
                 <TableCell style={{ fontWeight: 'bold' }} >languageCode</TableCell>
                 <TableCell style={{ fontWeight: 'bold' }} >TimeZone</TableCell>
@@ -70,40 +66,50 @@ class DataTable extends Component {
         )
 
     }
-    refreshList() {
-        fetch('https://safeup-api-communities-0001.herokuapp.com/communities')
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ communities: data })
-            })
-    }
-    componentDidUpdate() {
-        this.refreshList()
-    }
+
     deleteCommunity(id) {
         if (window.confirm('Are you sure?')) {
+            console.log('deleted')
             axios('https://safeup-api-communities-0001.herokuapp.com/communities/' + id, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json'
                 }
+
+            }).then(() => {
+                const communityAfterDelete = this.state.communities.filter((community) => community.id != id)
+                this.setState({ communities: communityAfterDelete })
             })
 
         }
     }
+    updateCommunity = (community, id) => {
+        const communities = this.state.communities;
+        for (let i = 0; i < communities.length; i++) {
+            if (communities[i].id === id) {
+                communities[i].name = community.name;
+                communities[i].languageCode = community.languageCode;
+                communities[i].timeZone = community.timeZone;
+                communities[i].type = community.type;
+                ;
+                console.log(community)
+            }
+        }
+        this.setState({ communities: communities })
+    }
 
     renderTableRows = () => {
-        return this.state.communities.map(communities => {
+        return this.state.communities.map(community => {
             return (
-                <TableRow key={communities.id}>
-                    <TableCell >{communities.id}</TableCell>
-                    <TableCell >{communities.name}</TableCell>
-                    <TableCell >{communities.languageCode}</TableCell>
-                    <TableCell >{communities.timeZone}</TableCell>
-                    <TableCell >{communities.type}</TableCell>
-                    <TableCell ><EditCommunity EditCommunity={this.EditCommunity} /></TableCell>
-                    <TableCell ><Button onClick={() => this.deleteCommunity(communities.id)}
+                <TableRow key={community.id}>
+                    {/* <TableCell >{community.id}</TableCell> */}
+                    <TableCell >{community.name}</TableCell>
+                    <TableCell >{community.languageCode}</TableCell>
+                    <TableCell >{community.timeZone}</TableCell>
+                    <TableCell >{community.type}</TableCell>
+                    <TableCell ><EditCommunity community={community} updateCommunity={this.updateCommunity} /></TableCell>
+                    <TableCell ><Button onClick={() => this.deleteCommunity(community.id)}
                         variant="contained" color="secondary">Delete</Button></TableCell>
 
                 </TableRow>

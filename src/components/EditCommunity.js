@@ -13,20 +13,35 @@ import axios from 'axios'
 export default class extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             open: false,
             form: {
-                id: '',
+
                 name: '',
                 languageCode: '',
                 timeZone: '',
-                type: ''
-            }
+                type: '',
+
+            },
+            id: null
         }
     }
 
+    componentDidMount() {
+        const form = {
+            name: this.props.community.name,
+            languageCode: this.props.community.languageCode,
+            timeZone: this.props.community.timeZone,
+            type: this.props.community.type,
+        }
+        this.setState({
+            id: this.props.community.id,
+            form: form
 
+
+        })
+
+    }
 
 
     handleToggle = () => {
@@ -47,7 +62,7 @@ export default class extends Component {
     }
 
 
-    handleSubmit = (id, e) => {
+    handleSubmit = (e) => {
         //todo validation 
         // const {form}=this.state
 
@@ -55,20 +70,23 @@ export default class extends Component {
         e.preventDefault()
         console.log(this.state)
         const data = {
+
             name: this.state.form.name,
             languageCode: this.state.form.languageCode,
             timeZone: this.state.form.timeZone,
             type: parseInt(this.state.form.type, 10)
         }
 
-        axios.put(`https://safeup-api-communities-0001.herokuapp.com/communities` + id, data)
+        axios.patch(`https://safeup-api-communities-0001.herokuapp.com/communities/` + this.state.id, data)
             .then(response => {
                 console.log(response.data)
-                this.props.EditCommunity(response.data)
+                this.props.updateCommunity(data, this.state.id)
             })
             .catch(error => {
                 console.log(error)
             })
+
+
     }
 
 
@@ -93,6 +111,7 @@ export default class extends Component {
 
                     </DialogContentText>
                     <form  >
+
                         <TextField
                             multiline
                             rows="2"
@@ -135,6 +154,7 @@ export default class extends Component {
                             margin="3"
                         />
                         <br />
+                        <br />
                         <Button
                             variant="contained"
                             color="primary"
@@ -142,7 +162,7 @@ export default class extends Component {
                             type="submit"
                             margin="normal"
                         // onSubmit={this.handleSubmit}
-                        >Edit
+                        >Edit1
                         </Button>
                     </form>
                 </DialogContent>

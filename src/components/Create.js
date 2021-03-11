@@ -8,6 +8,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select'
 import axios from 'axios'
 
 export default class extends Component {
@@ -110,6 +115,19 @@ export default class extends Component {
                             onChange={this.handleChange('languageCode')}
                             margin="3"
                         />
+                        {/* <FormControl >
+                            <InputLabel id="demo-simple-select-label">LanguageCode</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={languageCode}
+                                onChange={this.handleChange('languageCode')}
+                            >
+                                <MenuItem value={10}>AF</MenuItem>
+                                <MenuItem value={20}>AR-LB</MenuItem>
+                                <MenuItem value={30}>EN-AU</MenuItem>
+                            </Select>
+                        </FormControl> */}
 
                         <br />
                         <TextField
@@ -131,6 +149,7 @@ export default class extends Component {
                             onChange={this.handleChange('type')}
                             margin="3"
                         />
+                        <br />
                         <br />
                         <Button
                             variant="contained"
