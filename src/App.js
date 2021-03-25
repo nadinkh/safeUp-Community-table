@@ -11,8 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
-
+import CommunityNetworks from './components/CommunityNetworks'
+import Tree from './components/Tree'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +59,11 @@ function App() {
                 <ListItemText primary={"Communities"} />
               </ListItem>
             </Link>
+            <Link to='/community-networks' className={classes.link}>
+              <ListItem button >
+                <ListItemText primary={"Community Networks"} />
+              </ListItem>
+            </Link>
 
           </List>
 
@@ -68,7 +73,7 @@ function App() {
             Welcoming page
             </Route>
           <Route exact path='/communities' component={DataTable} />
-
+          <Route exact path='/community-networks' component={CommunityNetworks} />
         </Switch>
       </div>
 

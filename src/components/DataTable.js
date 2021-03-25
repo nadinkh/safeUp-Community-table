@@ -92,8 +92,10 @@ class DataTable extends Component {
                 communities[i].languageCode = community.languageCode;
                 communities[i].timeZone = community.timeZone;
                 communities[i].type = community.type;
+
                 ;
                 console.log(community)
+                
             }
         }
         this.setState({ communities: communities })
@@ -111,7 +113,8 @@ class DataTable extends Component {
                     <TableCell ><EditCommunity community={community} updateCommunity={this.updateCommunity} /></TableCell>
                     <TableCell ><Button onClick={() => this.deleteCommunity(community.id)}
                         variant="contained" color="secondary">Delete</Button></TableCell>
-
+               
+               
                 </TableRow>
             )
         })
