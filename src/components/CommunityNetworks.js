@@ -5,12 +5,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import axios from 'axios';
-import countries from 'countries-list'
+// import countries from 'countries-list'
 import continents from 'countries-list'
-import cities from 'cities-list'
-import csc from 'country-state-city'
-import allCities from 'all-the-cities'
-import all_the_cities from 'all-the-cities';
+// import cities from 'cities-list'
+// import csc from 'country-state-city'
+// import allCities from 'all-the-cities'
+// import all_the_cities from 'all-the-cities';
 
 
 const useStyles = makeStyles({
@@ -33,8 +33,6 @@ const CommunityNetworks = () => {
         // console.log(continents.continents.AF)
         // console.log(countries.countries)
         // console.log(countries.countries)
-
-
         // console.log(cities)
         setCommunity(res.data)//array 1
       }).catch(err => {
